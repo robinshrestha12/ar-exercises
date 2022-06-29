@@ -13,7 +13,7 @@ puts "----------"
 
 class Store < ActiveRecord::Base
  validates :name, length: { minimum: 3}
- validates :annual_revenue, numericality: {greater_than_equal_to: 0, only_integer: true}
+ validates :annual_revenue, numericality: {greater_than_equal_to: 0, only_integer: true}, presence: true 
 end
 
 class Employee < ActiveRecord::Base
@@ -26,11 +26,8 @@ answer = gets.chomp.to_s
 
 new_store = Store.create( name: answer )
 
-#print new_store.errors
-# p "name errors " + new_store.errors.details[:name].to_s
-
 new_store.errors.full_messages.each do |message|
-  print message
+  print message + "\n" 
 end
 
 
